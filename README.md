@@ -1,6 +1,6 @@
 # ☃️🎄 Advent Of Code 2022 🎄☃️
 
-I decided to make my soultions of the tasks in the `Advent Of Code` public.
+I decided to make my soultions of the problems in the `Advent Of Code` public.
 Feel free to take a look :)
 
 |       Day         | Task 1  | Task 2  | 
