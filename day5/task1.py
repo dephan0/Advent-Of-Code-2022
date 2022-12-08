@@ -2,7 +2,7 @@
 import re
 
 def print_crates(crates):
-    max_len = max([ len(stack) for stack in crates] )
+    max_len = max([ len(stack) for stack in crates ])
     for i in range(max_len):
         for j in range(len(crates)):
             if len(crates[j]) >= max_len - i:
@@ -27,7 +27,7 @@ def main():
                     stack_index += 1
         
         # reverse the order of stacks
-        crates = [ list(reversed(stack)) for stack in crates]
+        crates = [ list(reversed(stack)) for stack in crates ]
         print_crates(crates)
         
         # skip one line
