@@ -104,11 +104,11 @@ def main():
                         cwd = cwd.get_dir(fields[2])
 
                 # Handle cd ..
-                if fields[1] == 'cd' and fields[2] == '..':
+                elif fields[1] == 'cd' and fields[2] == '..':
                     cwd = cwd.parent
 
                 # Handle ls
-                if fields[1] == 'ls':
+                elif fields[1] == 'ls':
                     line = input_file.readline()
                     fields = line.strip().split(' ')
                     while fields[0] != '$' and line != '':
