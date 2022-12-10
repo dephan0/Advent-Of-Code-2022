@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+pos_after_motion = {
+    'U' : lambda pos: [pos[0], pos[1] + 1],
+    'D' : lambda pos: [pos[0], pos[1] - 1],
+    'R' : lambda pos: [pos[0] + 1, pos[1]],
+    'L' : lambda pos: [pos[0] - 1, pos[1]],
+}
+
 # used for the extended example
 def print_knots(knots_pos):
     for i in range(15, -6, -1):
@@ -51,65 +58,17 @@ def main():
             motion, count = fields[0], int(fields[1])
             # print_knots(knots_pos)
 
-            if motion == 'U':
-                for i in range(count):
-                    knots_pos[0][1] += 1 # update head
-                    for ind in range(1, len(knots_pos)):
-                        knot = knots_pos[ind]
-                        knot_after = knots_pos[ind - 1]
-                        if not are_touching(knot, knot_after):
-                            knots_pos[ind] = next_move(knot, knot_after)
+            for i in range(count):
+                knots_pos[0] = pos_after_motion[motion](knots_pos[0]) # update head
+                for ind in range(1, len(knots_pos)):
+                    knot = knots_pos[ind]
+                    knot_after = knots_pos[ind - 1]
+                    if not are_touching(knot, knot_after):
+                        knots_pos[ind] = next_move(knot, knot_after)
 
-                    # print_knots(knots_pos)
-        
-                    # check if tail position is in set 
-                    if tuple(knots_pos[-1]) not in visited_positions:
-                            visited_positions.add(tuple(knots_pos[-1]))
-
-            elif motion == 'D':
-                for i in range(count):
-                    knots_pos[0][1] -= 1 # update head
-                    for ind in range(1, len(knots_pos)):
-                        knot = knots_pos[ind]
-                        knot_after = knots_pos[ind - 1]
-                        if not are_touching(knot, knot_after):
-                            knots_pos[ind] = next_move(knot, knot_after)
-                        
-                    # print_knots(knots_pos)
-        
-                    # check if tail position is in set 
-                    if tuple(knots_pos[-1]) not in visited_positions:
-                            visited_positions.add(tuple(knots_pos[-1]))
-
-            elif motion == 'R':
-                for i in range(count):
-                    knots_pos[0][0] += 1 # update head
-                    for ind in range(1, len(knots_pos)):
-                        knot = knots_pos[ind]
-                        knot_after = knots_pos[ind - 1]
-                        if not are_touching(knot, knot_after):
-                            knots_pos[ind] = next_move(knot, knot_after)
-
-                    # print_knots(knots_pos)
-        
-                    # check if tail position is in set 
-                    if tuple(knots_pos[-1]) not in visited_positions:
-                            visited_positions.add(tuple(knots_pos[-1]))
-
-            elif motion == 'L':
-                for i in range(count):
-                    knots_pos[0][0] -= 1 # update head
-                    for ind in range(1, len(knots_pos)):
-                        knot = knots_pos[ind]
-                        knot_after = knots_pos[ind - 1]
-                        if not are_touching(knot, knot_after):
-                            knots_pos[ind] = next_move(knot, knot_after)
-
-                    # print_knots(knots_pos)
-        
-                    # check if tail position is in set 
-                    if tuple(knots_pos[-1]) not in visited_positions:
-                            visited_positions.add(tuple(knots_pos[-1]))
+                # check if tail position is in set 
+                if tuple(knots_pos[-1]) not in visited_positions:
+                        visited_positions.add(tuple(knots_pos[-1]))
 
     # print_knots(knots_pos)
     print(len(visited_positions))
