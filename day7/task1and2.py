@@ -76,7 +76,6 @@ def sum_dir_sizes(directory):
 sufficient_dirs = []
 def find_sufficient_dirs(directory, required_size):
     global sufficient_dirs
-
     for el in directory.data:
         if type(el) == Directory:
             if el.size >= required_size:
@@ -142,8 +141,8 @@ def main():
     # Task 2
     # Recurse through the directory tree to find the directories
     # that are more than or equal to required_to_free in size
-    free_space = 70000000 - total_size
-    required_to_free = 30000000 - free_space
+    free_space = 70_000_000 - total_size
+    required_to_free = 30_000_000 - free_space
 
     if root.size >= required_to_free:
         sufficient_dirs.append(root)

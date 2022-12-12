@@ -119,7 +119,7 @@ def main():
     trees = []
     with open('testinput.txt', 'r') as input_file:
         for line in input_file:
-            row = [ int(val) for val in line.strip() ]
+            row = [ int(token) for token in line.strip() ]
             trees.append(row)
 
     # Task 1 

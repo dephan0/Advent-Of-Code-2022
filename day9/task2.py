@@ -70,7 +70,6 @@ def main():
                 if tuple(knots_pos[-1]) not in visited_positions:
                         visited_positions.add(tuple(knots_pos[-1]))
 
-    # print_knots(knots_pos)
     print(len(visited_positions))
 
 
