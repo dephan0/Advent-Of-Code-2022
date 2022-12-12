@@ -2,7 +2,7 @@
 from PriorityQueue import PriorityQueue
 from itertools import product
 
-# reverse is used for task 2. 
+# reverse is used for task 2. (so that we can navigate from from the end in reverse motion)
 # if reverse = True:
 #   are_connected recognizes two squares as connected if the second one (neighbor)
 #   is at most 1 shorter than the second 
