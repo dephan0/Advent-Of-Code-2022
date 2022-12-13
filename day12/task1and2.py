@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from PriorityQueue import PriorityQueue
+from queue import PriorityQueue
 
 # reverse is used for task 2. (so that we can navigate from from the end in reverse motion)
 # if reverse = True:
@@ -38,26 +38,28 @@ class Graph:
         self.edges = edges
     
     def dijkstra_list(self, start_pos):
-        output = []
+        visited = set()
+        costs = {start_pos : 0}
+        parents = {start_pos : None}
         pq = PriorityQueue()
-        pq.put([0, None, start_pos])
-        for position in self.vertices.keys():
-            if position != start_pos:
-                pq.put([float('inf'), None, position])
-        
+        pq.put((0, start_pos))
+
         while not pq.empty():
             min_v = pq.get()
-            min_v_pos = min_v[2]
-            output.append(min_v)
+            min_v_pos = min_v[1]
+            min_v_cost = costs[min_v_pos]
+            visited.add(min_v_pos)
             
-            for v in pq.data:
-                v_pos = v[2]
+            for neighbor_pos in self.edges[min_v_pos]:
+                if neighbor_pos in visited:
+                    continue
                 # check if the cost of min_v + 1 is smaller than current cost of v
-                if  v_pos in self.edges[min_v_pos] and min_v[0] + 1 < v[0]:
-                    v[0] = min_v[0] + 1 # update the cost
-                    v[1] = min_v[2] # update the parent
+                if min_v_cost + 1 < costs.get(neighbor_pos, float('inf')):
+                    costs[neighbor_pos] = min_v_cost + 1 # update the cost
+                    parents[neighbor_pos] = min_v_pos # update the parent
+                    pq.put((min_v_cost + 1, neighbor_pos))
 
-        return output
+        return [(costs[pos], parents[pos], pos) for pos in visited]
     
     def find_pos_in_list(self, pos, list):
         for element in list:
