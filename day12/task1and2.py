@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 from PriorityQueue import PriorityQueue
-from itertools import product
 
 # reverse is used for task 2. (so that we can navigate from from the end in reverse motion)
 # if reverse = True:
@@ -117,7 +116,7 @@ def main():
         pos = element[2]
         if vertices[pos] == 0:
             min = cost if cost < min else min 
-
+    
     print(min)
 
 
