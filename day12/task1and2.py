@@ -20,7 +20,7 @@ def get_edges(vertices, reverse=False):
     edges = {pos : [] for pos in vertices_positions}
 
     if reverse:
-        are_connected = lambda cur_pos, neighbor_pos: vertices[neighbor_pos] >= vertices[cur_pos] -1
+        are_connected = lambda cur_pos, neighbor_pos: vertices[neighbor_pos] >= vertices[cur_pos] - 1
     else:
         are_connected = lambda cur_pos, neighbor_pos: vertices[neighbor_pos] <= vertices[cur_pos] + 1
 
@@ -83,7 +83,7 @@ def main():
     vertices = {}
     start_pos = None
     end_pos = None
-    with open('day12/input.txt', 'r') as input_file:
+    with open('input.txt', 'r') as input_file:
         lines = input_file.readlines()
         for i, line in enumerate(lines):
             for j, char in enumerate(line.strip()):
